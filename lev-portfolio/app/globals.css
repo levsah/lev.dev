@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 210 100% 50%; /* Blue */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 3% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 3% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 210 100% 50%; /* Blue */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%; /* Red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%;
+    --input: 240 3% 20%;
+    --ring: 210 100% 50%; /* Blue */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 210 100% 50%; /* Blue */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 3% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 3% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 210 100% 50%; /* Blue */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%; /* Red */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%;
+    --input: 240 3% 20%;
+    --ring: 210 100% 50%; /* Blue */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add explicit styling for prose content */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: hsl(210, 100%, 50%) !important; /* Blue color */
+  margin-top: 1.5em !important;
+  margin-bottom: 0.75em !important;
+  font-weight: bold !important;
+}
+
+.prose h2 {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.prose p {
+  margin-bottom: 1em !important;
+  line-height: 1.75 !important;
+}
+
+.prose ul,
+.prose ol {
+  margin-left: 1.5em !important;
+  margin-bottom: 1em !important;
+}
+
+.prose li {
+  margin-bottom: 0.5em !important;
+}
+
+.prose pre {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  padding: 1em !important;
+  border-radius: 0.25rem !important;
+  overflow-x: auto !important;
+  margin-bottom: 1em !important;
+}
+
+.prose code {
+  font-family: monospace !important;
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 128, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 128, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.glitch {
+  position: relative;
+  color: white;
+  font-weight: bold;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch::before {
+  color: #0080ff; /* Blue */
+  z-index: -1;
+}
+
+.glitch::after {
+  color: #ff0000; /* Red */
+  z-index: -2;
+}
+
+.glitch:hover::before {
+  animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  opacity: 1;
+}
+
+.glitch:hover::after {
+  animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  opacity: 1;
+}
+
+@keyframes glitch-animation {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: #0080ff; /* Blue */
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Split-colored border for card hover */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(to bottom, #000, #000), /* Background color */
+    linear-gradient(90deg, #0080ff, #ff0000); /* Blue to Red gradient border */
+  position: relative;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 128, 255, 0.3), 0 5px 10px rgba(255, 0, 0, 0.3);
+  background-image: linear-gradient(to bottom, #000, #000), /* Background color */
+    linear-gradient(90deg, #0080ff, #ff0000); /* Blue to Red gradient border */
+}
+
+/* Split-colored border for terminal window */
+.terminal-window {
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), /* Background color */
+    conic-gradient(from 0deg, #0080ff, #ff0000, #0080ff); /* Blue to Red to Blue gradient border */
+  border-radius: 4px;
+  padding: 1rem;
+  position: relative;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(to bottom, transparent, transparent), /* Transparent background */
+    linear-gradient(90deg, #0080ff, #ff0000); /* Blue to Red gradient border */
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.terminal-button-red {
+  background-color: #ff5f56;
+}
+
+.terminal-button-yellow {
+  background-color: #ffbd2e;
+}
+
+.terminal-button-green {
+  background-color: #27c93f;
+}
+
+.terminal-title {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.terminal-content {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+}
+
+.command-prompt::before {
+  content: "$ ";
+  background: linear-gradient(90deg, #0080ff, #ff0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Add animation to the terminal window border */
+@keyframes rotate-gradient {
+  0% {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+      conic-gradient(from 0deg, #0080ff, #ff0000, #0080ff);
+  }
+  100% {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+      conic-gradient(from 360deg, #0080ff, #ff0000, #0080ff);
+  }
+}
+
+.terminal-window:hover {
+  animation: rotate-gradient 3s linear infinite;
+}
+
+/* Blog content specific styles */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: hsl(210, 100%, 50%); /* Blue color */
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.blog-content h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.blog-content p {
+  margin-bottom: 1em;
+  line-height: 1.75;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.blog-content li {
+  margin-bottom: 0.5em;
+}
+
+.blog-content pre {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.blog-content code {
+  font-family: monospace;
+}
