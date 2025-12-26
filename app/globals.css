@@ -1,0 +1,381 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Updated to dark theme colors */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    /* Changed primary from blue to yellow */
+    --primary: 45 100% 50%; /* Yellow */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 3% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 3% 12%;
+    --muted-foreground: 240 5% 65%;
+    /* Changed accent from blue to yellow */
+    --accent: 45 100% 50%; /* Yellow */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 30 60% 40%; /* Brown */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%;
+    --input: 240 3% 20%;
+    /* Changed ring from blue to yellow */
+    --ring: 45 100% 50%; /* Yellow */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    /* Changed primary from blue to yellow */
+    --primary: 45 100% 50%; /* Yellow */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 3% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 3% 12%;
+    --muted-foreground: 240 5% 65%;
+    /* Changed accent from blue to yellow */
+    --accent: 45 100% 50%; /* Yellow */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 30 60% 40%; /* Brown */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 3% 20%;
+    --input: 240 3% 20%;
+    /* Changed ring from blue to yellow */
+    --ring: 45 100% 50%; /* Yellow */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border))];
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add explicit styling for prose content */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  /* Changed heading color from blue to yellow */
+  color: hsl(45, 100%, 50%) !important; /* Yellow color */
+  margin-top: 1.5em !important;
+  margin-bottom: 0.75em !important;
+  font-weight: bold !important;
+}
+
+.prose h2 {
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+
+.prose p {
+  margin-bottom: 1em !important;
+  line-height: 1.75 !important;
+}
+
+.prose ul,
+.prose ol {
+  margin-left: 1.5em !important;
+  margin-bottom: 1em !important;
+}
+
+.prose li {
+  margin-bottom: 0.5em !important;
+}
+
+.prose pre {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  padding: 1em !important;
+  border-radius: 0.25rem !important;
+  overflow-x: auto !important;
+  margin-bottom: 1em !important;
+}
+
+.prose code {
+  font-family: monospace !important;
+}
+
+/* Updated bg-grid-pattern for dark background */
+.bg-grid-pattern {
+  /* Changed grid pattern from blue to yellow */
+  background-image: linear-gradient(to right, rgba(255, 215, 0, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 215, 0, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.glitch {
+  position: relative;
+  /* Changed glitch text color to white for better visibility on project thumbnails */
+  color: white;
+  font-weight: bold;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch::before {
+  /* Changed glitch color from blue to yellow */
+  color: #ffd700; /* Yellow */
+  z-index: -1;
+}
+
+.glitch::after {
+  color: #8b4513; /* Brown */
+  z-index: -2;
+}
+
+.glitch:hover::before {
+  animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  opacity: 1;
+}
+
+.glitch:hover::after {
+  animation: glitch-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  opacity: 1;
+}
+
+@keyframes glitch-animation {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  /* Changed cursor color from blue to yellow */
+  background-color: #ffd700; /* Yellow */
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Updated card hover background for dark theme */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  /* Changed gradient from blue-brown to yellow-brown */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    linear-gradient(90deg, #ffd700, #8b4513);
+  position: relative;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  /* Changed box shadow from blue to yellow */
+  box-shadow: 0 5px 10px rgba(255, 215, 0, 0.3), 0 5px 10px rgba(139, 69, 19, 0.3);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    linear-gradient(90deg, #ffd700, #8b4513);
+}
+
+/* Updated terminal window background for dark theme */
+.terminal-window {
+  border: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  /* Changed gradient from blue to yellow */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    conic-gradient(from 0deg, #ffd700, #8b4513, #ffd700);
+  border-radius: 4px;
+  padding: 1rem;
+  position: relative;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(to bottom, transparent, transparent), /* Transparent background */
+    /* Changed gradient from blue-brown to yellow-brown */
+    linear-gradient(90deg, #ffd700, #8b4513); /* Yellow to Brown gradient border */
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.terminal-button-red {
+  background-color: #ff5f56;
+}
+
+.terminal-button-yellow {
+  background-color: #ffbd2e;
+}
+
+.terminal-button-green {
+  background-color: #27c93f;
+}
+
+/* Updated terminal title color for dark background */
+.terminal-title {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.terminal-content {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+}
+
+.command-prompt::before {
+  content: "$ ";
+  /* Changed gradient from blue to yellow */
+  background: linear-gradient(90deg, #ffd700, #8b4513);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Add animation to the terminal window border */
+/* Updated animation for dark theme terminal */
+@keyframes rotate-gradient {
+  0% {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+      /* Changed gradient from blue to yellow */
+      conic-gradient(from 0deg, #ffd700, #8b4513, #ffd700);
+  }
+  100% {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+      conic-gradient(from 360deg, #ffd700, #8b4513, #ffd700);
+  }
+}
+
+.terminal-window:hover {
+  animation: rotate-gradient 3s linear infinite;
+}
+
+/* Blog content specific styles */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  /* Changed heading color from blue to yellow */
+  color: hsl(45, 100%, 50%); /* Yellow color */
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.blog-content h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.blog-content p {
+  margin-bottom: 1em;
+  line-height: 1.75;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.blog-content li {
+  margin-bottom: 0.5em;
+}
+
+/* Updated code block background for dark theme */
+.blog-content pre {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.blog-content code {
+  font-family: monospace;
+}
+
+/* Adding marquee animation for logo carousel */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee2 {
+  animation: marquee2 25s linear infinite;
+}
