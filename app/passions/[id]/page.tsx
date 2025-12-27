@@ -3,16 +3,11 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, CalendarIcon, Clock } from "lucide-react"
-import { useEffect } from "react"
+import { useParams } from "next/navigation"
 
-interface BlogPostPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const { id } = params
+export default function BlogPostPage() {
+  const params = useParams()
+  const id = params?.id as string
 
   // This would typically come from an API or database
   const posts = {
@@ -476,48 +471,41 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   // Add custom styles to ensure proper formatting in production
-  useEffect(() => {
-    // Add specific styling for the blog content
-    const style = document.createElement("style")
-    style.innerHTML = `
-      .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
-        color: hsl(210, 100%, 50%); /* Blue color */
-        font-weight: bold;
-        margin-top: 1.5em;
-        margin-bottom: 0.75em;
-      }
-      .blog-content h2 {
-        font-size: 1.5rem;
-        line-height: 2rem;
-      }
-      .blog-content p {
-        margin-bottom: 1em;
-        line-height: 1.75;
-      }
-      .blog-content ul, .blog-content ol {
-        margin-left: 1.5em;
-        margin-bottom: 1em;
-      }
-      .blog-content li {
-        margin-bottom: 0.5em;
-      }
-      .blog-content pre {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 1em;
-        border-radius: 0.25rem;
-        overflow-x: auto;
-        margin-bottom: 1em;
-      }
-      .blog-content code {
-        font-family: monospace;
-      }
-    `
-    document.head.appendChild(style)
-
-    return () => {
-      document.head.removeChild(style)
+  const style = document.createElement("style")
+  style.innerHTML = `
+    .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
+      color: hsl(210, 100%, 50%); /* Blue color */
+      font-weight: bold;
+      margin-top: 1.5em;
+      margin-bottom: 0.75em;
     }
-  }, [])
+    .blog-content h2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    .blog-content p {
+      margin-bottom: 1em;
+      line-height: 1.75;
+    }
+    .blog-content ul, .blog-content ol {
+      margin-left: 1.5em;
+      margin-bottom: 1em;
+    }
+    .blog-content li {
+      margin-bottom: 0.5em;
+    }
+    .blog-content pre {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1em;
+      border-radius: 0.25rem;
+      overflow-x: auto;
+      margin-bottom: 1em;
+    }
+    .blog-content code {
+      font-family: monospace;
+    }
+  `
+  document.head.appendChild(style)
 
   return (
     <div className="space-y-8 max-w-3xl mx-auto">

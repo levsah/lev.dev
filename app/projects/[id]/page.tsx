@@ -6,7 +6,9 @@ import Link from "next/link"
 import { ArrowLeft, Github, ExternalLink } from "lucide-react"
 
 export default function ProjectPage() {
-  const { id } = useParams<{ id: string }>()
+  const params = useParams()
+  const id = params?.id as string
+
   const projects = {
     Olympinomics: {
       title: "Olympinomics",
@@ -70,7 +72,7 @@ export default function ProjectPage() {
   }
 
   // Normalize the ID for case-insensitive matching
-  const normalizedId = id as string
+  const normalizedId = id
   const project = projects[normalizedId as keyof typeof projects]
 
   if (!project) {
