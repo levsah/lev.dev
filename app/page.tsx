@@ -59,7 +59,7 @@ export default function Home() {
     <div className="space-y-16">
       <section className="py-12">
         <Terminal
-          text="Levy Sahoo (levsah) is Data Science student @ UC San Diego. He's an avid Learner of Economics and Business, passionate FC Barcelona fan, a Minnesota Sports enthusiast, and loves learning to cook. Welcome to Lev.Dev"
+          text="Levy Sahoo (levsah) is Data Science student @ UC San Diego. Loves exploring and learning about all things in Tech (AI/ML/DS), Business (FinTech/Banking/VC/Startups), and Sports. FC Barcelona fan, Minnesota Sports enthusiast, and enjoys cooking / trying new dishes. Welcome to Lev.Dev"
           typingSpeed={40}
           className="max-w-3xl mx-auto"
           onComplete={() => setIntroComplete(true)}
